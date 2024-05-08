@@ -28,6 +28,10 @@ int graf() {
     return 0;
 }
  
+double dzielenie(int i, int j) {
+
+	return i / j;
+}
 
 
 std::vector<double> sinus() {
@@ -51,6 +55,7 @@ PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake
     m.def("sinus", &sinus);
     m.def("multi", &multi);
     m.def("graf", &graf);
-
-
+	m.def("dzielenie", &dzielenie);
+  
 }
+//w konsoli wpisac kolejno: cd build, cmake .., cd .., cmake --build build
