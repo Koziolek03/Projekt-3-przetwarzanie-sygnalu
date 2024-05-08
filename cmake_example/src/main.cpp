@@ -45,7 +45,7 @@ std::vector<double> sinus() {
 
     m::show();
 
-    //return x;
+    return x;
 }
 
 
