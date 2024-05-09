@@ -48,6 +48,28 @@ std::vector<double> sinus() {
     return x;
 }
 
+std::vector<double> cosinus() {
+
+    std::vector<double> x = m::linspace(0, 10, 150);
+    std::vector<double> y = m::transform(x, [](auto x) { return cos(5 * x); });
+    m::plot(x, y);//->color({ 0.f, 0.7f, 0.9f });
+    //m::title("2-D Line Plot");
+   // m::xlabel("x");
+   // m::ylabel("cos(5x)");
+
+    m::show();
+    return x;
+}
+
+std::vector<double> pila( int freq) {
+    std::vector<double> x = m::linspace(0, 2 * 3.14, 300);
+    std::vector<double> y = m::transform(x, [freq](double t) {
+        return 2.0 * (t * freq - floor(0.5 + t * freq)); });
+    m::plot(x, y);
+    m::show();
+    return y;
+}
+
 
 PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake 
 
@@ -56,6 +78,7 @@ PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake
     m.def("multi", &multi);
     m.def("graf", &graf);
 	m.def("dzielenie", &dzielenie);
-  
+	m.def("cosinus", &cosinus);
+	m.def("pila", &pila);
 }
 //w konsoli wpisac kolejno: cd build, cmake .., cd .., cmake --build build
