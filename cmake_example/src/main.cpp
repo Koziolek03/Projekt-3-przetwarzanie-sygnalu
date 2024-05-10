@@ -39,7 +39,7 @@ double dzielenie(int i, int j) {
 }
 
 
-int readAudioFile(const std::string& filename) {
+std::vector<double> readAudioFile(const std::string& filename) {
     // Wczytanie pliku dŸwiêkowego za pomoc¹ biblioteki audiofile
     AudioFile<double> audioFile;
    
@@ -47,8 +47,19 @@ int readAudioFile(const std::string& filename) {
     audioFile.load(filePath);
    
     audioFile.printSummary();
- 
-    return 0;
+
+    std::vector<double> dzwiek;
+    for (const auto& sample : audioFile.samples[0]) { // Za³ó¿my, ¿e wczytujesz tylko jedn¹ œcie¿kê dŸwiêkow¹
+        // Normalizacja wartoœci do zakresu 0-1
+        
+        // Skalowanie do zakresu -128 do 127
+        double scaledValue = sample;
+        // Dodaj przeskalowan¹ wartoœæ do wektora
+        dzwiek.push_back(scaledValue);
+
+    }
+    
+    return dzwiek;
 }
 
 void visualizeAudio(const std::vector<float>& audio_data) {

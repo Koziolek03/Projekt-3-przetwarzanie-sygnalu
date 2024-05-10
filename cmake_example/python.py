@@ -9,8 +9,9 @@ print(graf())
  
 #print(add(1, 2))
 #print(sinus())
-p
-audio_data=readAudioFile("cmake_example\CantinaBand3.wav")
+
+
+audio_data = readAudioFile("cmake_example\CantinaBand3.wav")
 print(audio_data)
 print(visualizeAudio(audio_data))
 
