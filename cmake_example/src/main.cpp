@@ -4,6 +4,11 @@
 #include <cmath>
 #include <matplot/matplot.h>
 #include <set>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <pybind11/numpy.h>
+#include <AudioFile.h>
 
 namespace py = pybind11;
 namespace m = matplot;
@@ -34,6 +39,30 @@ double dzielenie(int i, int j) {
 }
 
 
+int readAudioFile(const std::string& filename) {
+    // Wczytanie pliku dŸwiêkowego za pomoc¹ biblioteki audiofile
+    AudioFile<double> audioFile;
+   
+    const std::string filePath = filename;
+    audioFile.load(filePath);
+   
+    audioFile.printSummary();
+ 
+    return 0;
+}
+
+void visualizeAudio(const std::vector<float>& audio_data) {
+    m::plot(audio_data);
+    m::title("Wykres dŸwiêku");
+    m::xlabel("Czas [s]");
+    m::ylabel("Amplituda");
+    m::show();
+}
+
+
+
+
+
 std::vector<double> sinus() {
 
     std::vector<double> x = m::linspace(0, 2 * 3.14, 300);
@@ -56,6 +85,8 @@ PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake
     m.def("multi", &multi);
     m.def("graf", &graf);
 	m.def("dzielenie", &dzielenie);
+    m.def("readAudioFile", &readAudioFile, "Funkcja wczytuj¹ca plik dŸwiêkowy");
+    m.def("visualizeAudio", &visualizeAudio, "Funkcja wizualizuj¹ca dŸwiêk");
   
 }
 //w konsoli wpisac kolejno: cd build, cmake .., cd .., cmake --build build
