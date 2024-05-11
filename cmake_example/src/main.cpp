@@ -38,8 +38,17 @@ void WszystkieFunkcje(int freq) {
     m::show();
 }
 
+void zdj() {
+    auto img = m::imread("C:/Users/Gigabyte/Pictures/Saved Pictures/Steve Shrekvey.jpg");//wczytaj zdj
+
+	m::imshow(img);//wyswietl zdj   
+
+    m::show();
+}
+
 PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake 
 
     m.def("WszystkieFunkcje", &WszystkieFunkcje);
+    m.def("zdj", &zdj);
 }
 //w konsoli wpisac kolejno: cd build, cmake .., cd .., cmake --build build
