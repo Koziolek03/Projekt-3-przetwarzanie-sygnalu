@@ -9,14 +9,14 @@ namespace py = pybind11;
 namespace m = matplot;
 
 void WszystkieFunkcje(int freq) {
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
+    std::vector<double> x = m::linspace(0, 2 * 3.14, 300);
 
     //Sinus
-    m::subplot(2, 2, 1);
+	m::subplot(2, 2, 1);//robi w jednym oknie 4 wykresy, 2 wiersze i 2 kolumny, 1 to, ¿e bedzie w pierwsyzm oknie
     std::vector<double> y1 = m::transform(x, [freq](double t) {
         return sin(t * freq); });
     m::plot(x, y1);
-
+   
     //Cosinus
     m::subplot(2, 2, 2);
     std::vector<double> y2 = m::transform(x, [freq](double t) { 
