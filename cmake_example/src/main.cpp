@@ -8,39 +8,6 @@
 namespace py = pybind11;
 namespace m = matplot;
 
-void sinus(int freq) {
-
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
-    std::vector<double> y = m::transform(x, [freq](double t) {  
-        return sin(t * freq); });
-    m::plot(x, y);
-    m::show();
-}
-
-void cosinus(int freq) {
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
-    std::vector<double> y = m::transform(x, [freq](double t) {
-        return cos(t * freq); });
-    m::plot(x, y);
-    m::show();
-}
-
-void pila(int freq) {
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
-    std::vector<double> y = m::transform(x, [freq](double t) {
-        return 2.0 * ((t * freq / (2 * 3.14)) - floor(0.5 + t * freq / (2 * 3.14))); });
-    m::plot(x, y);
-    m::show();
-}
-
-void prostokatny(int freq) {
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
-    std::vector<double> y = m::transform(x, [freq](double t) {
-        return std::copysign(0.99, std::sin(t * freq)); });
-    m::plot(x, y);
-    m::show();
-}
-
 void WszystkieFunkcje(int freq) {
     std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
 
