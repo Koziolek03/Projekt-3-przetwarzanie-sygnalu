@@ -3,7 +3,10 @@
 #include <vector>
 #include <cmath>
 #include <matplot/matplot.h>
+#include <iostream>
 #include <set>
+
+
 
 namespace py = pybind11;
 namespace m = matplot;
@@ -39,7 +42,7 @@ void WszystkieFunkcje(int freq) {
 }
 
 void zdj() {
-    auto img = m::imread("C:/Users/Gigabyte/Pictures/Saved Pictures/Steve Shrekvey.jpg");//wczytaj zdj
+    auto img = m::imread("C:/Users/Gigabyte/Downloads/lena_blues.tiff");//wczytaj zdj
 
 	m::imshow(img);//wyswietl zdj   
 

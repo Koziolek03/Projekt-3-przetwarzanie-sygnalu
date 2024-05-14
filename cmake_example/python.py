@@ -1,5 +1,5 @@
 from audioop import *
-
+import imageio
 from build.Debug.cmake_example import *
 
 zdj()
