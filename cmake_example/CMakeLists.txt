@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.4...3.18)
 project(cmake_example)
 add_subdirectory(matplotplusplus)
 add_subdirectory(pybind11)
+add_subdirectory(opencv2/opencv.hpp)
 
 
 
