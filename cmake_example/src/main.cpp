@@ -10,34 +10,38 @@ namespace m = matplot;
 
 void sinus(int freq) {
 
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
+    std::vector<double> x = m::linspace(0, 1.0001/freq , 150);
     std::vector<double> y = m::transform(x, [freq](double t) {  
-        return sin(t * freq); });
+        return sin(t * freq*6.28); });
+    m::title("Sinus");
+    m::xlabel("Czas [s]");
     m::plot(x, y);
     m::show();
 }
 
 void cosinus(int freq) {
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
+    std::vector<double> x = m::linspace(0, 1.0001 / freq, 150);
     std::vector<double> y = m::transform(x, [freq](double t) {
-        return cos(t * freq); });
+        return cos(t * freq * 6.28); });
     m::plot(x, y);
     m::show();
 }
 
 void pila(int freq) {
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
+    std::vector<double> x = m::linspace(0, 1.0001 / freq, 150);
     std::vector<double> y = m::transform(x, [freq](double t) {
-        return 2.0 * ((t * freq / (2 * 3.14)) - floor(0.5 + t * freq / (2 * 3.14))); });
+        return 2.0 * ((t * freq ) - floor(0.5 + t * freq )); });
     m::plot(x, y);
     m::show();
 }
 
 void prostokatny(int freq) {
-    std::vector<double> x = m::linspace(0, 2 * 3.14, 150);
+    std::vector<double> x = m::linspace(0, 1.0001 / freq, 150);
     std::vector<double> y = m::transform(x, [freq](double t) {
-        return std::copysign(0.99, std::sin(t * freq)); });
+        return std::copysign(0.99, std::sin(t * freq * 6.28)); });
     m::plot(x, y);
+    m::title("Przebieg prostokatny");
+    m::xlabel("Czas [s]");
     m::show();
 }
 
