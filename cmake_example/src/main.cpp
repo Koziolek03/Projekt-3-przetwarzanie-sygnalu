@@ -5,8 +5,7 @@
 #include <matplot/matplot.h>
 #include <set>
 #include <string>
-#include <iostream>
-#include <fstream>
+
 #include <pybind11/numpy.h>
 #include <AudioFile.h>
 
@@ -69,6 +68,24 @@ void visualizeAudio(const std::vector<float>& audio_data) {
 }
 
 
+std::vector<double> filtrDolnoprzepustowy(std::vector<double>dane, double cutoff) {
+
+    std::vector<double>output;
+
+    double RC = 1.0 / (2.0 * 3.14159265358979323846 * cutoff);
+    double dt = 1.0 / 44100.0; // Za³ó¿my, ¿e czêstotliwoœæ próbkowania wynosi 44100 Hz
+    double alpha = dt / (RC + dt);
+
+    output.push_back(dane[0]);
+    double outputTemp;
+    for (long long int i = 1; i < dane.size(); ++i) {
+        outputTemp = alpha * dane[i] + (1 - alpha) * output[i - 1];
+        output.push_back(outputTemp);
+    }
+
+    return output;
+
+}
 
 
 
@@ -92,6 +109,11 @@ void prostokatny(int freq) {
     m::show();
 }
 
+
+
+
+
+
 PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake 
 
     m.def("sinus", &sinus);
@@ -100,8 +122,8 @@ PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake
     m.def("prostokatny", &prostokatny);
     m.def("readAudioFile", &readAudioFile, "Funkcja wczytuj¹ca plik dŸwiêkowy");
     m.def("visualizeAudio", &visualizeAudio, "Funkcja wizualizuj¹ca dŸwiêk");
-
-
+    m.def("filtrDolnoprzepustowy", &filtrDolnoprzepustowy, "Funkcja Filtra 1D");
+  
 }
 
 //w konsoli wpisac kolejno: cd build, cmake .., cd .., cmake --build build
