@@ -4,9 +4,8 @@
 #include <cmath>
 #include <matplot/matplot.h>
 #include <iostream>
+#include <fstream>
 #include <set>
-#include <opencv2/opencv.hpp>
-
 
 
 
@@ -44,16 +43,37 @@ void WszystkieFunkcje(int freq) {
 }
 
 void zdj() {
-    auto img = m::imread("C:/Users/Gigabyte/Downloads/lena_blues.tiff");//wczytaj zdj
+    const int width = 10;
+    const int height = 10;
+    std::vector<std::vector<int>> image(height, std::vector<int>(width, 0));
 
-	m::imshow(img);//wyswietl zdj   
+    // Generowanie przyk³adowej macierzy pikseli (np. prosty gradient)
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            image[y][x] = x + y;
+        }
+    }
 
-    m::show();
+    // Pe³na œcie¿ka do pliku CSV
+    std::ofstream file("C:/Users/Gigabyte/Source/Repos/Koziollek03/Projekt-3-przetwarzanie-sygnalu/cmake_example/image.csv");
+    if (file.is_open()) {
+        for (const auto& row : image) {
+            for (size_t col = 0; col < row.size(); ++col) {
+                file << row[col];
+                if (col < row.size() - 1) file << ",";
+            }
+            file << "\n";
+        }
+        file.close();
+    }
+    else {
+        std::cerr << "Nie mo¿na otworzyæ pliku do zapisu!" << std::endl;
+    }
 }
 
 PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake 
 
-    m.def("WszystkieFunkcje", &WszystkieFunkcje);
     m.def("zdj", &zdj);
+    m.def("WszystkieFunkcje", &WszystkieFunkcje);
 }
 //w konsoli wpisac kolejno: cd build, cmake .., cd .., cmake --build build
