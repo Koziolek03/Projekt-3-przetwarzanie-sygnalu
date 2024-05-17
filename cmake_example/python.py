@@ -5,10 +5,10 @@ from build.Debug.cmake_example import *
 
 #freq = int(input("Podaj czestotliwosc: "))
 
-#sinus(freq)
-#cosinus(freq)
-#pila(freq)
-#prostokatny(freq)
+sinus(freq)
+cosinus(freq)
+pila(freq)
+prostokatny(freq)
 
 audio_data = readAudioFile("cmake_example\CantinaBand3.wav")# Wczytanie do pythona pliku dźwiękowego CantinaBand3.wav
 print(audio_data) #wyświetlenie wartości poszczególnych sampli
