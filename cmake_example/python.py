@@ -3,7 +3,7 @@ from audioop import *
 from build.Debug.cmake_example import *
 
 
-#freq = int(input("Podaj czestotliwosc: "))
+freq = int(input("Podaj czestotliwosc: "))
 
 sinus(freq)
 cosinus(freq)
@@ -14,7 +14,7 @@ audio_data = readAudioFile("cmake_example\CantinaBand3.wav")# Wczytanie do pytho
 print(audio_data) #wyświetlenie wartości poszczególnych sampli
 print(visualizeAudio(audio_data)) #wizualizacja za pomocą Gnuplota
 
-audio_filtrated=filtrDolnoprzepustowy(audio_data,100)
+audio_filtrated=filtrGornoPrzepustowy(audio_data,100)
 print(visualizeAudio(audio_filtrated))
 
 # Szymon generowanie sygnałów sin cos itd, rozmycie gaussa 

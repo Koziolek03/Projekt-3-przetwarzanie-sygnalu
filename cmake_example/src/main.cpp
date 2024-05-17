@@ -68,7 +68,7 @@ void visualizeAudio(const std::vector<float>& audio_data) {
 }
 
 
-std::vector<double> filtrDolnoprzepustowy(std::vector<double>dane, double cutoff) {
+std::vector<double> filtrGornoPrzepustowy(std::vector<double>dane, double cutoff) {
 
     std::vector<double>output;
 
@@ -122,7 +122,7 @@ PYBIND11_MODULE(cmake_example, m) {//nag³ówki funkcji dla cmake
     m.def("prostokatny", &prostokatny);
     m.def("readAudioFile", &readAudioFile, "Funkcja wczytuj¹ca plik dŸwiêkowy");
     m.def("visualizeAudio", &visualizeAudio, "Funkcja wizualizuj¹ca dŸwiêk");
-    m.def("filtrDolnoprzepustowy", &filtrDolnoprzepustowy, "Funkcja Filtra 1D");
+    m.def("filtrGornoPrzepustowy", &filtrGornoPrzepustowy, "Funkcja Filtra 1D");
   
 }
 
