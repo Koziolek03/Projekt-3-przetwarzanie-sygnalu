@@ -21,3 +21,15 @@ Jeżeli wszystkie pliki zostały poprawnie pobranie wykonać kolejne kroki:
 4. cd..
 5. cmake --build build
 Powyższe komendy budują bibliotekę zgodnie z instrukcją w CmakeList.txt
+
+
+Ewentualne błędy po git clone:
+Pliki:
+1. CmakeList.txt
+2. main.cpp
+3. python.py
+   
+  Zostawić 
+
+  Resztę plików zastąpić przez te pobrane z innych repozytoriów np Matplot, Audiofile
+  
